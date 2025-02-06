@@ -65,8 +65,8 @@ const numberLogic = async (req ,res) => {
 
   // Classify the number
   const properties = [];
-  if (prime) properties.push('prime');
-  if (perfect) properties.push('perfect');
+  // if (prime) properties.push('prime');
+  // if (perfect) properties.push('perfect');
   if (armstrong) properties.push('armstrong');
   properties.push(number % 2 === 0 ? 'even' : 'odd');
 
@@ -74,8 +74,8 @@ const numberLogic = async (req ,res) => {
 
   res.status(StatusCodes.OK).json({
     number: number,
-    is_prime: isPrime(number),
-    is_perfect: isPerfect(number),
+    // is_prime: isPrime(number),
+    // is_perfect: isPerfect(number),
     properties: properties,
     digit_sum: getDigitSum(number),
     fun_fact: funFact,
