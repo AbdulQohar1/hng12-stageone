@@ -13,7 +13,7 @@ app.use(express.json());
 // Root route
 app.get('/', (req, res) => {
   // Default number
-  req.query.number = '371'; 
+  // req.query.number = '371'; 
   inputNumber(req, res);
 });
 
