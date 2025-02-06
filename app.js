@@ -11,7 +11,7 @@ app.use(cors());
 
 // Root Endpoint - Process number 371 by default
 app.get('/', (req, res) => {
-    req.query.number = '371'; // Default number
+    // req.query.number = '371'; // Default number
     processNumber(req, res); // Reuse the existing processing function
 });
 
