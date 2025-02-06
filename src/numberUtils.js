@@ -55,31 +55,15 @@ const numberLogic = async (req ,res) => {
     return res.status(StatusCodes.BAD_REQUEST).json({
       number: req.query.number,
       error: true,
-      message: "Input must be a valid number."
+      // message: "Input must be a valid number."
     });
   };
 
-  // if (!number | isNaN(number)) {
-  //   return res.status(400).json({ error: true, number: number }); 
-  // };
   const prime = isPrime(number);
   const perfect = isPerfect(number);
   const armstrong = isArmstrong(number);
-  // const digitSum = getDigitSum(number);
-
 
   // Classify the number
-  // const properties = [];
-  // if (isPrime(number)) properties.push('prime');
-  // if (isPerfect(number)) properties.push('perfect');
-  // if (isArmstrong(number)) properties.push('armstrong');
-  // if (number % 2 === 0) {
-  //   // Add 'even' if the number is even
-  //   properties.push('even'); 
-  // } else {
-  //   // Add 'odd' if the number is odd
-  //   properties.push('odd'); 
-  // }
   const properties = [];
   if (prime) properties.push('prime');
   if (perfect) properties.push('perfect');
@@ -100,9 +84,5 @@ const numberLogic = async (req ,res) => {
 
 module.exports = {
   numberLogic
-  // isPrime,
-  // isPerfect,
-  // isArmstrong,
-  // getDigitSum,
-  // getFunFact,
+
 };
