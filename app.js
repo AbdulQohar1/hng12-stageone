@@ -1,32 +1,28 @@
 const express = require('express');
 const cors = require('cors');
-const { StatusCodes } = require('http-status-codes');
-const {inputNumber} = require('./src/controller');
+const {classifyNumber} = require('./src/controller');
 
 const app = express();
 const port = process.env.PORT || 3000;
+const { processNumber } = require('./src/controller');
 
-// Middleware
+// Enable CORS
 app.use(cors());
-app.use(express.json()); 
 
-// Root route
+// Root Endpoint - Process number 371 by default
 app.get('/', (req, res) => {
-  // Default number
-  // req.query.number = '371'; 
-  inputNumber(req, res);
+    req.query.number = '371'; // Default number
+    processNumber(req, res); // Reuse the existing processing function
 });
 
+// API Route for custom numbers
 app.use('/api', require('./src/route'));
 
-// global error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-    error: true,
-    message: 'Something went wrong on the server.',
-  });
+// 404 Error Handling for Undefined Routes
+app.use((req, res) => {
+    res.status(404).json({ error: 'Endpoint not found' });
 });
+
 
 app.listen(port, () => {
   console.log(`Server is running on Port: ${port}`);
