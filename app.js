@@ -19,9 +19,12 @@ app.use(express.json());
 
 // Root route
 app.get('/', (req, res) => {
-  // Default number
-  req.query.number = '371'; 
+  res.send('Welcome to the Number Classifier API! Use /api/classify-number?number=<number> to classify a number.');
 });
+// app.get('/', (req, res) => {
+//   // Default number
+//   req.query.number = '371'; 
+// });
 
 // GET /api/classify-number 
 app.get('/api/classify-number', async (req, res) => {
@@ -57,6 +60,15 @@ app.get('/api/classify-number', async (req, res) => {
     properties: properties,
     digit_sum: getDigitSum(number),
     fun_fact: funFact,
+  });
+});
+
+// global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    error: true,
+    message: 'Something went wrong on the server.',
   });
 });
 
